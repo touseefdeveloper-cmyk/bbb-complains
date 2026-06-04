@@ -26,13 +26,10 @@ RETRY_DELAY = 30
 def parse_complaints_from_text(text: str) -> dict:
     total_complaints = None
 
-    # BBB complaints page shows e.g. "X complaints closed in last 3 years"
+    # BBB complaints page shows e.g. "7 total complaints in the last 3 years."
     for pattern in [
-        r"([\d,]+)\s+complaints? closed in the last 3 years",
-        r"([\d,]+)\s+complaints? closed in last 3 years",
-        r"([\d,]+)\s+Customer Complaints?",
+        r"(\d+)\s+total complaints? in the last 3 years",
         r"This business has (\d+) complaints?",
-        r"Number of complaints:\s*([\d,]+)",
     ]:
         m = re.search(pattern, text, re.IGNORECASE)
         if m:
