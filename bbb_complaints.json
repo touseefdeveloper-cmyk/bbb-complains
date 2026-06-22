@@ -20,7 +20,7 @@
   {
     "id": "abc-pro",
     "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/general-contractor/abraham-building-consulting-1216-885407/complaints",
-    "total_complaints": "0",
+    "total_complaints": null,
     "error": null
   },
   {
