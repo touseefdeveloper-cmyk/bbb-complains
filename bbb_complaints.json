@@ -20,31 +20,31 @@
   {
     "id": "abc-pro",
     "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/general-contractor/abraham-building-consulting-1216-885407/complaints",
-    "total_complaints": null,
+    "total_complaints": "0",
     "error": null
   },
   {
     "id": "1-degree-construction",
+    "bbb_url": "https://www.bbb.org/us/ca/los-angeles/profile/construction/1-degree-construction-inc-1216-1000023536/complaints",
+    "total_complaints": null,
+    "error": null
+  },
+  {
+    "id": "mr-cabinet-care",
     "bbb_url": "https://www.bbb.org/us/ca/anaheim/profile/general-contractor/the-original-mr-cabinet-care-1126-50066/complaints",
     "total_complaints": "0",
     "error": null
   },
   {
-    "id": "mr-cabinet-care",
-    "bbb_url": null,
-    "total_complaints": null,
-    "error": "No URL provided"
-  },
-  {
     "id": "payless-kitchen-cabinets",
-    "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/complaints",
-    "total_complaints": "0",
+    "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/complaints",
+    "total_complaints": "20",
     "error": null
   },
   {
     "id": "payless-bath-makeover",
-    "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/complaints",
-    "total_complaints": "0",
+    "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/complaints",
+    "total_complaints": "20",
     "error": null
   },
   {
@@ -56,7 +56,7 @@
   {
     "id": "gm-home-remodeling",
     "bbb_url": "https://www.bbb.org/us/ca/sherman-oaks/profile/home-renovation/gm-home-remodeling-inc-1216-1000013059/complaints",
-    "total_complaints": "0",
-    "error": null
+    "total_complaints": null,
+    "error": "402 Client Error: Payment Required for url: https://api.webscraping.ai/text?api_key=734f42d8-0c88-418e-adee-11636f9aaa08&url=https%3A%2F%2Fwww.bbb.org%2Fus%2Fca%2Fsherman-oaks%2Fprofile%2Fhome-renovation%2Fgm-home-remodeling-inc-1216-1000013059%2Fcomplaints&js=true&proxy=stealth&timeout=30000&country=us&wait_for=h2"
   }
 ]
