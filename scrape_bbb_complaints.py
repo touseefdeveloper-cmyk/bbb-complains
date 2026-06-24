@@ -12,10 +12,10 @@ BUSINESSES = [
     {"id": "american-vision-windows",  "bbb_url": "https://www.bbb.org/us/ca/simi-valley/profile/windows/american-vision-windows-1236-3000957/complaints"},
     {"id": "one-week-bath",            "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/bathroom-remodel/one-week-bath-inc-1216-13044203/complaints"},
     {"id": "abc-pro",                  "bbb_url": "https://www.bbb.org/us/ca/van-nuys/profile/general-contractor/abraham-building-consulting-1216-885407/complaints"},
-    {"id": "1-degree-construction",    "bbb_url": "https://www.bbb.org/us/ca/los-angeles/profile/construction/1-degree-construction-inc-1216-1000023536/complaints"},
-    {"id": "mr-cabinet-care",          "bbb_url": "https://www.bbb.org/us/ca/anaheim/profile/general-contractor/the-original-mr-cabinet-care-1126-50066/complaints"},
-    {"id": "payless-kitchen-cabinets", "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/complaints"},
-    {"id": "payless-bath-makeover",    "bbb_url": "https://www.bbb.org/us/ca/glendale/profile/floor-coverings/carpet-wagon-glendale-inc-1216-22000132/complaints"},
+    {"id": "1-degree-construction",    "bbb_url": "https://www.bbb.org/us/ca/anaheim/profile/general-contractor/the-original-mr-cabinet-care-1126-50066/complaints"},
+    {"id": "mr-cabinet-care",          "bbb_url": None},
+    {"id": "payless-kitchen-cabinets", "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/complaints"},
+    {"id": "payless-bath-makeover",    "bbb_url": "https://www.bbb.org/ca/on/etobicoke/profile/kitchen-remodel/payless-kitchen-cabinets-ltd-0107-1234459/complaints"},
     {"id": "adar-builders",            "bbb_url": "https://www.bbb.org/us/ca/winnetka/profile/roofing-contractors/adar-builders-inc-1216-1000035931/complaints"},
     {"id": "gm-home-remodeling",       "bbb_url": "https://www.bbb.org/us/ca/sherman-oaks/profile/home-renovation/gm-home-remodeling-inc-1216-1000013059/complaints"},
 ]
@@ -26,9 +26,10 @@ RETRY_DELAY = 30
 def parse_complaints_from_text(text: str) -> dict:
     total_complaints = None
 
-    # BBB complaints page shows e.g. "7 total complaints in the last 3 years."
+    # BBB complaints page shows "7 total complaints in the last 3 years."
+    # but when there's exactly 1, it drops "total": "1 complaint in the last 3 years."
     for pattern in [
-        r"(\d+)\s+total complaints? in the last 3 years",
+        r"(\d+)\s+(?:total\s+)?complaints?\s+in the last 3 years",
         r"This business has (\d+) complaints?",
     ]:
         m = re.search(pattern, text, re.IGNORECASE)
