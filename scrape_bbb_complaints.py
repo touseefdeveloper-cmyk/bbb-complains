@@ -62,9 +62,11 @@ def scrape_bbb(business: dict) -> dict:
 
     print(f"  [{business['id']}] Scraping ...")
 
+    # Every URL goes through residential first (cheaper), then falls back
+    # to stealth-only retries if residential fails or can't be parsed.
     proxy_attempts = [
         ("residential", 2),
-        ("stealth",     2),
+        ("stealth",     3),   # dedicated stealth-only retry pass for every URL
     ]
 
     last_error = None
@@ -78,6 +80,14 @@ def scrape_bbb(business: dict) -> dict:
                 if parsed["total_complaints"] is None:
                     snippet = " ".join(text.split())[:300]
                     print(f"    ⚠ Page loaded but could not parse data. Snippet: {snippet}")
+                    # Treat an unparseable page as a soft failure too —
+                    # worth retrying with a stronger proxy rather than
+                    # accepting a null result immediately.
+                    last_error = "Parsed null — page loaded but no complaint count found"
+                    if attempt < tries:
+                        print(f"    Retrying in {RETRY_DELAY}s ...")
+                        time.sleep(RETRY_DELAY)
+                        continue
 
                 result = {
                     "id": business["id"],
@@ -98,7 +108,7 @@ def scrape_bbb(business: dict) -> dict:
         print(f"    Switching to next proxy type ...")
         time.sleep(RETRY_DELAY)
 
-    print(f"    ✗ All proxy attempts exhausted.")
+    print(f"    ✗ All proxy attempts exhausted (including dedicated stealth retries).")
     return {"id": business["id"], "bbb_url": business["bbb_url"], "total_complaints": None, "error": last_error}
 
 
